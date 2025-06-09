@@ -8,7 +8,7 @@ HTML_TEMPLATE = '''
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Proyecto Redes UNA - Python App</title>
+    <title>Proyecto Redes Aplicacion Python</title>
     <style>
         body { font-family: Arial, sans-serif; margin: 40px; }
         .container { max-width: 600px; margin: 0 auto; }
@@ -17,7 +17,7 @@ HTML_TEMPLATE = '''
 </head>
 <body>
     <div class="container">
-        <h1>🚀 Aplicación Python - Proyecto Redes</h1>
+        <h1> Proyecto Redes Aplicacion Python </h1>
         <div class="status">
             <h2>Estado del Sistema</h2>
             <p><strong>Versión:</strong> {{ version }}</p>

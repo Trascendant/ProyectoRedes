@@ -1,19 +1,19 @@
-# Usar imagen base de Python
+# imagen base de Python
 FROM python:3.9-slim
 
-# Establecer directorio de trabajo
+# directorio de trabajo
 WORKDIR /app
 
-# Copiar requirements primero (para cache de Docker)
+# Copiar requirements primero para cache de Docker
 COPY requirements.txt .
 
-# Instalar dependencias
+# dependencias
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copiar código fuente
 COPY src/ ./src/
 
-# Exponer puerto
+# puerto
 EXPOSE 5000
 
 # Variables de entorno
