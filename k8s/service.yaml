@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 apiVersion: v1
 kind: Service
 metadata:
@@ -10,3 +11,6 @@ spec:
       port: 80
       targetPort: 5000
   type: LoadBalancer
+=======
+
+>>>>>>> cc618e95272674981edb9406818e5c3922c40e24
