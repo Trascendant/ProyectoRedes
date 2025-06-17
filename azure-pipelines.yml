@@ -26,7 +26,7 @@
 #        kubernetesServiceConnection: 'your-aks'
 
 
-# Trigger automático en push a main
+# Trigger en push a main
 trigger:
 - main
 - develop
