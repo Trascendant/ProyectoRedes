@@ -26,12 +26,11 @@
 #        kubernetesServiceConnection: 'your-aks'
 
 
-# azure-pipelines.yml (crear en la raíz de tu repositorio)
 trigger:
-- main  # o master, según tu rama principal
+- main
 
 pool:
-  name: 'Default'  # Pool donde está tu self-hosted agent
+  name: 'Default'
   demands:
   - agent.name -equals local-agent
 
@@ -76,15 +75,25 @@ stages:
   - job: Deploy
     displayName: 'Deploy Application'
     steps:
-    - script: |
-        # Detener contenedor anterior si existe
-        docker stop proyecto-redes || true
-        docker rm proyecto-redes || true
-        
-        # Ejecutar nueva imagen
-        docker run -d --name proyecto-redes -p 5000:5000 $(imageRepository):$(tag)
-        
-        # Verificar que esté corriendo
-        sleep 10
-        curl -f http://localhost:5000/health || exit 1
+
+    - task: PowerShell@2
       displayName: 'Deploy New Container'
+      inputs:
+        targetType: 'inline'
+        script: |
+          try {
+            docker stop proyecto-redes
+            docker rm proyecto-redes
+          } catch {
+            Write-Host "No previous container found"
+          }
+          
+          docker run -d --name proyecto-redes -p 5000:5000 $(imageRepository):$(tag)
+          Start-Sleep -Seconds 10
+          
+          $response = Invoke-WebRequest -Uri "http://localhost:5000/health" -UseBasicParsing -TimeoutSec 5
+          if ($response.StatusCode -eq 200) {
+            Write-Host "Application deployed successfully"
+          } else {
+            exit 1
+          }
