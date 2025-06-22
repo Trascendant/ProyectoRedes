@@ -19,6 +19,7 @@ HTML_TEMPLATE = '''
     <div class="container">
         <h1> Proyecto Redes Aplicacion Python </h1>
         <h2> Pruebas con push automatico </h2>
+        <h2> Pruebas con push automatico 2 </h2>
         <div class="status">
             <h2>Estado del Sistema</h2>
             <p><strong>Versión:</strong> {{ version }}</p>
