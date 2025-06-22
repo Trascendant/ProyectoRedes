@@ -49,9 +49,7 @@ def health():
 @app.route('/api/info')
 def info():
     return jsonify({
-        "proyecto": "Comunicaciones y Redes - UNA",
-        "tecnologias": ["Docker", "Kubernetes", "CI/CD", "Azure"],
-        "estudiantes": "Grupo #X"  # Cambiar por su número de grupo
+        "proyecto": "Redes proyecto CI/CD",
     })
 
 if __name__ == '__main__':
