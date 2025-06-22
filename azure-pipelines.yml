@@ -40,6 +40,7 @@ variables:
   containerRegistry: 'docker.io'
   dockerfilePath: '$(Build.SourcesDirectory)/Dockerfile'
   tag: '$(Build.BuildId)'
+  kubernetesServiceConnection: 'aks-connection'
 
 stages:
 - stage: Build
@@ -75,7 +76,6 @@ stages:
   - job: Deploy
     displayName: 'Deploy Application'
     steps:
-
     - task: PowerShell@2
       displayName: 'Deploy New Container'
       inputs:
@@ -97,3 +97,28 @@ stages:
           } else {
             exit 1
           }
+
+- stage: DeployToKubernetes
+  displayName: 'Deploy to AKS'
+  dependsOn: Build
+  jobs:
+  - job: DeployAKS
+    displayName: 'Deploy to Kubernetes'
+    steps:
+    - task: KubernetesManifest@0
+      displayName: 'Deploy to AKS'
+      inputs:
+        action: 'deploy'
+        kubernetesServiceConnection: '$(kubernetesServiceConnection)'
+        namespace: 'default'
+        manifests: |
+          $(Build.SourcesDirectory)/k8s/deployment.yaml
+        containers: '$(imageRepository):$(tag)'
+    
+    - task: Kubernetes@1
+      displayName: 'Get Service Status'
+      inputs:
+        connectionType: 'Kubernetes Service Connection'
+        kubernetesServiceEndpoint: '$(kubernetesServiceConnection)'
+        command: 'get'
+        arguments: 'service proyecto-redes-service'
