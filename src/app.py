@@ -18,7 +18,7 @@ HTML_TEMPLATE = '''
 <body>
     <div class="container">
         <h1> Proyecto Redes </h1>
-        <h2> Pruebas antes de la entrega </h2>
+        <h2> Pruebas durante la revision </h2>
         
         <div class="status">
             <h2>Estado del Sistema</h2>
