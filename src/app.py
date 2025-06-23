@@ -17,9 +17,9 @@ HTML_TEMPLATE = '''
 </head>
 <body>
     <div class="container">
-        <h1> Proyecto Redes Aplicacion Python </h1>
-        <h2> Probando push automatico 1 </h2>
-        <img> src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.craiyon.com%2Fimage%2FgG-qtnrhRe28Jam23g2mmA&psig=AOvVaw3rEATrZVSrQ4QeTac2rxx6&ust=1750726471746000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCJiLmtuqho4DFQAAAAAdAAAAABAE" alt="El Tigre" </img>
+        <h1> Proyecto Redes </h1>
+        <h2> Pruebas antes de la entrega </h2>
+        
         <div class="status">
             <h2>Estado del Sistema</h2>
             <p><strong>Versión:</strong> {{ version }}</p>
